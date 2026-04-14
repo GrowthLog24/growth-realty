@@ -270,3 +270,116 @@ h1, h2, h3 {
 .form-input::placeholder {
   color: var(--color-dk);
 }
+
+/* ========================================
+   TREF Style Animations (GSAP 보완)
+   ======================================== */
+
+/* 텍스트 reveal 애니메이션 */
+@keyframes text-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-text-reveal {
+  animation: text-reveal 1s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+  opacity: 0;
+}
+
+/* 패럴랙스 이미지 컨테이너 */
+.parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-image {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* TREF 스타일 이징 함수 */
+.ease-tref {
+  transition-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96);
+}
+
+.ease-tref-out {
+  transition-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+}
+
+/* 스크롤 트리거 요소 기본 상태 */
+.gsap-fade-up {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.gsap-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 이미지 스케일 애니메이션 */
+@keyframes image-scale {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-image-scale {
+  animation: image-scale 1.5s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+}
+
+/* 슬라이더 페이드 효과 (Swiper 보완) */
+.swiper-slide {
+  transition: opacity 1.5s ease-in-out !important;
+}
+
+/* 마스크 reveal 효과 */
+.mask-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+}
+
+.mask-reveal.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* 라인 draw 애니메이션 */
+@keyframes line-draw {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-line-draw {
+  animation: line-draw 0.8s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+}
+
+/* 숫자 카운트 애니메이션용 */
+.number-counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 호버 시 이미지 확대 효과 */
+.hover-zoom {
+  overflow: hidden;
+}
+
+.hover-zoom img {
+  transition: transform 0.8s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.05);
+}
