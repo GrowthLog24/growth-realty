@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 import {
@@ -58,49 +55,32 @@ const services = [
 ];
 
 export function Services() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-up");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll("[data-animate]");
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="services"
       className="section-padding bg-[var(--color-ow)]"
     >
       <div className="container-custom">
         <div className="text-center mb-12">
-          <div data-animate className="delay-1">
+          <div data-animate="fade-up" data-delay="0">
             <SectionLabel className="justify-center">Our Services</SectionLabel>
           </div>
           <h2
-            data-animate
-            className="delay-2 font-serif text-[26px] md:text-[36px] font-bold text-[var(--color-g)] mb-4"
+            data-animate="fade-up"
+            data-delay="0.1"
+            className="font-serif text-[26px] md:text-[36px] font-bold text-[var(--color-g)] mb-4"
           >
             서비스
           </h2>
-          <GoldDivider className="mx-auto" />
+          <div data-animate="fade-up" data-delay="0.15">
+            <GoldDivider className="mx-auto" />
+          </div>
         </div>
 
+        {/* 카드 그리드 - 스태거 애니메이션 */}
         <div
-          data-animate
-          className="delay-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[rgba(10,61,47,0.08)]"
+          data-stagger="0.1"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-[rgba(10,61,47,0.08)]"
         >
           {services.map((service) => {
             const IconComponent = service.icon;

@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 import { Tag } from "@/components/ui/Tag";
@@ -37,47 +34,29 @@ const timeline = [
 ];
 
 export function Expertise() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-up");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll("[data-animate]");
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="expertise"
       className="section-padding bg-[var(--color-g)]"
     >
       <div className="container-custom">
-        <div data-animate className="delay-1 mb-4">
+        <div data-animate="fade-up" data-delay="0" className="mb-4">
           <SectionLabel>Core Expertise</SectionLabel>
         </div>
         <h2
-          data-animate
-          className="delay-2 font-serif text-[26px] md:text-[36px] font-bold text-white mb-4"
+          data-animate="fade-up"
+          data-delay="0.1"
+          className="font-serif text-[26px] md:text-[36px] font-bold text-white mb-4"
         >
           대표 전문성
         </h2>
-        <GoldDivider className="mb-12" />
+        <div data-animate="fade-up" data-delay="0.15">
+          <GoldDivider className="mb-12" />
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left: Phase Text Blocks */}
-          <div data-animate className="delay-3 space-y-8">
+          {/* Left: Phase Text Blocks - 스태거 애니메이션 */}
+          <div data-stagger="0.15" className="space-y-8">
             {phases.map((phase, index) => (
               <div key={phase.label}>
                 <span className="font-display text-[12px] tracking-[0.2em] text-[var(--color-au)] mb-3 block">
@@ -121,8 +100,8 @@ export function Expertise() {
             </div>
           </div>
 
-          {/* Right: Timeline */}
-          <div data-animate className="delay-4">
+          {/* Right: Timeline - 슬라이드 애니메이션 */}
+          <div data-animate="slide-left" data-delay="0.2">
             <div className="relative pl-8">
               {/* Vertical Line */}
               <div
@@ -132,8 +111,8 @@ export function Expertise() {
                 }}
               />
 
-              <div className="space-y-8">
-                {timeline.map((item, index) => (
+              <div data-stagger="0.08" className="space-y-8">
+                {timeline.map((item) => (
                   <div key={item.period} className="relative">
                     {/* Dot */}
                     <div

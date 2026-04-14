@@ -79,7 +79,6 @@ export function Numbers() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setShouldAnimate(true);
-            entry.target.classList.add("animate-fade-up");
           }
         });
       },
@@ -101,15 +100,27 @@ export function Numbers() {
     >
       <div className="container-custom">
         <div className="text-center mb-12">
-          <SectionLabel className="justify-center">Trust Indicators</SectionLabel>
-          <h2 className="font-serif text-[26px] md:text-[36px] font-bold text-[var(--color-g)] mb-4">
+          <div data-animate="fade-up" data-delay="0">
+            <SectionLabel className="justify-center">Trust Indicators</SectionLabel>
+          </div>
+          <h2
+            data-animate="fade-up"
+            data-delay="0.1"
+            className="font-serif text-[26px] md:text-[36px] font-bold text-[var(--color-g)] mb-4"
+          >
             숫자로 보는 신뢰
           </h2>
-          <GoldDivider className="mx-auto" />
+          <div data-animate="fade-up" data-delay="0.15">
+            <GoldDivider className="mx-auto" />
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-0 md:divide-x md:divide-[var(--color-ad)]">
-          {stats.map((stat, index) => (
+        {/* 숫자 카운터 - 스태거 애니메이션 */}
+        <div
+          data-stagger="0.12"
+          className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-0 md:divide-x md:divide-[var(--color-ad)]"
+        >
+          {stats.map((stat) => (
             <StatItem
               key={stat.label}
               value={stat.value}

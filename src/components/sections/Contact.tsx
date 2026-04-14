@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 import { Button } from "@/components/ui/Button";
@@ -17,7 +17,6 @@ const inquiryTypes = [
 ];
 
 export function Contact() {
-  const sectionRef = useRef<HTMLElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
@@ -28,24 +27,6 @@ export function Contact() {
     message: "",
     privacy: false,
   });
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-up");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll("[data-animate]");
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,29 +72,31 @@ export function Contact() {
 
   return (
     <section
-      ref={sectionRef}
       id="contact"
       className="section-padding bg-white"
     >
       <div className="container-custom">
         <div className="text-center mb-12">
-          <div data-animate className="delay-1">
+          <div data-animate="fade-up" data-delay="0">
             <SectionLabel className="justify-center">Contact Us</SectionLabel>
           </div>
           <h2
-            data-animate
-            className="delay-2 font-serif text-[24px] md:text-[32px] font-bold text-[var(--color-g)] mb-2 leading-[1.4]"
+            data-animate="fade-up"
+            data-delay="0.1"
+            className="font-serif text-[24px] md:text-[32px] font-bold text-[var(--color-g)] mb-2 leading-[1.4]"
           >
             지금 상황을 차분히 설명해 주세요.
             <br />
             다음 액션을 함께 정리해 드리겠습니다.
           </h2>
-          <GoldDivider className="mx-auto mt-6" />
+          <div data-animate="fade-up" data-delay="0.15">
+            <GoldDivider className="mx-auto mt-6" />
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Left: Contact Info */}
-          <div data-animate className="delay-3">
+          {/* Left: Contact Info - 슬라이드 애니메이션 */}
+          <div data-animate="slide-right" data-delay="0.2">
             <blockquote className="font-serif font-light italic text-[18px] md:text-[20px] text-[var(--color-g)] mb-10 leading-[1.7]">
               &ldquo;복잡한 부동산 문제일수록
               <br />
@@ -142,8 +125,8 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Right: Form */}
-          <div data-animate className="delay-4">
+          {/* Right: Form - 슬라이드 애니메이션 */}
+          <div data-animate="slide-left" data-delay="0.3">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>

@@ -1,42 +1,18 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 
 export function Founder() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-up");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll("[data-animate]");
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="founder"
       className="section-padding bg-[var(--color-ow)]"
     >
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Profile Image Placeholder */}
+          {/* Left: Profile Image Placeholder - TREF 스타일 이미지 reveal */}
           <div
-            data-animate
-            className="delay-1 relative aspect-[3/4] max-w-[400px] mx-auto lg:mx-0"
+            data-animate="image-reveal"
+            className="relative aspect-[3/4] max-w-[400px] mx-auto lg:mx-0"
           >
             {/* Profile Image Placeholder */}
             <div className="w-full h-full bg-[var(--color-g)] rounded-[2px] overflow-hidden flex items-center justify-center">
@@ -61,18 +37,21 @@ export function Founder() {
 
           {/* Right: Text Content */}
           <div>
-            <div data-animate className="delay-2">
+            <div data-animate="fade-up" data-delay="0">
               <SectionLabel>About the Founder</SectionLabel>
             </div>
             <h2
-              data-animate
-              className="delay-3 font-serif text-[26px] md:text-[36px] font-bold text-[var(--color-g)] mb-4"
+              data-animate="fade-up"
+              data-delay="0.1"
+              className="font-serif text-[26px] md:text-[36px] font-bold text-[var(--color-g)] mb-4"
             >
               대표 안혜린
             </h2>
-            <GoldDivider className="mb-8" />
+            <div data-animate="fade-up" data-delay="0.15">
+              <GoldDivider className="mb-8" />
+            </div>
 
-            <div data-animate className="delay-4 space-y-5">
+            <div data-animate="fade-up" data-delay="0.2" className="space-y-5">
               <p className="font-sans text-[15px] text-[var(--color-dk)] leading-[1.85]">
                 한양대 법학과에서 부동산 관련 제도와 법적 구조를, 서울대 환경대학원에서
                 도시계획과 공간 논리를 익혔습니다. 이론적으로 단단한 기반은 모든 컨설팅의
@@ -91,15 +70,16 @@ export function Founder() {
               </p>
             </div>
 
-            {/* Career Highlights */}
+            {/* Career Highlights - 스태거 애니메이션 */}
             <div
-              data-animate
-              className="delay-5 mt-10 pt-8 border-t border-[var(--color-ad)]"
+              data-animate="fade-up"
+              data-delay="0.3"
+              className="mt-10 pt-8 border-t border-[var(--color-ad)]"
             >
               <h3 className="font-display text-[11px] tracking-[0.2em] text-[var(--color-au)] uppercase mb-6">
                 Career Highlights
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div data-stagger="0.08" className="grid grid-cols-2 gap-4">
                 <div>
                   <span className="font-display text-[24px] font-bold text-[var(--color-g)]">
                     17

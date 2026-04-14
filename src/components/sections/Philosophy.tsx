@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 
 const philosophyItems = [
@@ -10,42 +7,22 @@ const philosophyItems = [
 ];
 
 export function Philosophy() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-up");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const elements = sectionRef.current?.querySelectorAll("[data-animate]");
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="phil"
       className="section-padding bg-[var(--color-ow)]"
     >
       <div className="container-custom">
         {/* Vertical Gold Line */}
-        <div data-animate className="delay-1">
+        <div data-animate="fade-up" data-delay="0">
           <GoldDivider vertical className="mb-10" />
         </div>
 
         {/* Quote */}
         <blockquote
-          data-animate
-          className="delay-2 max-w-[760px] mx-auto text-center mb-16"
+          data-animate="fade-up"
+          data-delay="0.1"
+          className="max-w-[760px] mx-auto text-center mb-16"
         >
           <p className="font-serif font-light italic text-[19px] md:text-[24px] lg:text-[30px] text-[var(--color-g)] leading-[1.7]">
             &ldquo;부동산은 단순한 자산이 아닙니다.
@@ -61,8 +38,8 @@ export function Philosophy() {
 
         {/* 3-Column Grid */}
         <div
-          data-animate
-          className="delay-3 max-w-[820px] mx-auto border border-[var(--color-ad)] grid grid-cols-1 md:grid-cols-3"
+          data-stagger="0.15"
+          className="max-w-[820px] mx-auto border border-[var(--color-ad)] grid grid-cols-1 md:grid-cols-3"
         >
           {philosophyItems.map((item, index) => (
             <div
