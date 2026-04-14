@@ -1,0 +1,11 @@
+export { Hero } from "./Hero";
+export { Philosophy } from "./Philosophy";
+export { Expertise } from "./Expertise";
+export { Services } from "./Services";
+export { TrackRecord } from "./TrackRecord";
+export { Process } from "./Process";
+export { Network } from "./Network";
+export { Founder } from "./Founder";
+export { Community } from "./Community";
+export { Numbers } from "./Numbers";
+export { Contact } from "./Contact";

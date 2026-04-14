@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+/* ========================================
+   그로스리얼티 디자인 시스템 - CSS Variables
+   ======================================== */
+
+@theme {
+  /* Primary Deep Green */
+  --color-g: #0A3D2F;
+  --color-g2: #0F3B2E;
+  --color-g3: #1A5C4A;
+
+  /* Bronze Gold */
+  --color-au: #BFA46F;
+  --color-al: #D4B78A;
+  --color-ad: rgba(191, 164, 111, 0.18);
+  --color-ab: rgba(191, 164, 111, 0.08);
+
+  /* Neutrals */
+  --color-w: #FFFFFF;
+  --color-ow: #F7F5F0;
+  --color-bk: #111111;
+  --color-sb: #3A3A3A;
+
+  /* Text on backgrounds */
+  --color-dm: rgba(255, 255, 255, 0.68);
+  --color-dk: rgba(17, 17, 17, 0.62);
+
+  /* Footer */
+  --color-footer: #061E14;
+
+  /* Font families */
+  --font-serif: "Noto Serif KR", serif;
+  --font-sans: "Noto Sans KR", sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+
+  /* Container */
+  --container-max: 1160px;
+
+  /* Spacing */
+  --section-padding-y: 120px;
+  --section-padding-y-mobile: 80px;
+
+  /* Typography Scale */
+  --text-3xl: 64px;  /* Hero 제목용 */
+  --text-2xl: 48px;  /* 섹션 제목용 */
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-bk);
+  background-color: var(--color-w);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* ========================================
+   Selection
+   ======================================== */
+
+::selection {
+  background-color: var(--color-au);
+  color: var(--color-w);
+}
+
+/* ========================================
+   Scrollbar (subtle)
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ow);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-ad);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-au);
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-indicator {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  opacity: 0;
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2.4s ease-in-out infinite;
+}
+
+/* Staggered delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.container-custom {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.section-padding {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+@media (max-width: 767px) {
+  .section-padding {
+    padding-top: var(--section-padding-y-mobile);
+    padding-bottom: var(--section-padding-y-mobile);
+  }
+}
+
+/* Grid pattern for Hero */
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(rgba(191, 164, 111, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(191, 164, 111, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Gold underline animation - 중앙에서 펼쳐지는 효과 */
+.nav-link-underline {
+  position: relative;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-au);
+  transition: width 0.32s ease, left 0.32s ease;
+}
+
+.nav-link-underline:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Card hover effects */
+.card-dark {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(191, 164, 111, 0.14);
+  transition: all 0.36s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-dark:hover {
+  border-color: rgba(191, 164, 111, 0.4);
+  background: rgba(191, 164, 111, 0.05);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-light {
+  background: white;
+  border-top: 2px solid transparent;
+  transition: all 0.36s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-light:hover {
+  border-top-color: var(--color-au);
+  background: var(--color-ow);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(10, 61, 47, 0.12);
+}
+
+/* Form input styles */
+.form-input {
+  border: none;
+  border-bottom: 1px solid rgba(10, 61, 47, 0.2);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 12px 0;
+  width: 100%;
+  transition: border-color 0.32s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--color-g);
+}
+
+.form-input::placeholder {
+  color: var(--color-dk);
+}
