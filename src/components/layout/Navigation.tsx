@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { BuildingIcon, MenuIcon, CloseIcon } from "@/components/ui/Icons";
+import Image from "next/image";
+import { MenuIcon, CloseIcon } from "@/components/ui/Icons";
 import { Button } from "@/components/ui/Button";
 
 const navLinks = [
@@ -46,19 +47,15 @@ export function Navigation() {
       >
         <div className="container-custom w-full flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <BuildingIcon
-              size={28}
-              className="text-[var(--color-au)] transition-transform duration-300 group-hover:scale-105"
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/assets/icons/simbol_logo.svg"
+              alt="그로스리얼티"
+              width={140}
+              height={40}
+              className="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80"
+              priority
             />
-            <div className="flex flex-col">
-              <span className="font-serif text-[15px] font-semibold text-white leading-tight">
-                그로스리얼티
-              </span>
-              <span className="font-display text-[9px] tracking-[0.15em] text-[var(--color-dm)] uppercase">
-                Growth Realty
-              </span>
-            </div>
           </Link>
 
           {/* Desktop Menu */}
