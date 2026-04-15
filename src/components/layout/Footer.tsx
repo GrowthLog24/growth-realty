@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { BuildingIcon, ArrowUpIcon } from "@/components/ui/Icons";
+import Image from "next/image";
+import { ArrowUpIcon } from "@/components/ui/Icons";
 import { useEffect, useState } from "react";
 
 const menuLinks = [
@@ -46,16 +47,14 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 pb-12 border-b border-[rgba(191,164,111,0.12)]">
             {/* Column 1: Logo & Company Info */}
             <div className="md:col-span-1">
-              <Link href="/" className="flex items-center gap-3 mb-6">
-                <BuildingIcon size={28} className="text-[var(--color-au)]" />
-                <div className="flex flex-col">
-                  <span className="font-serif text-[15px] font-semibold text-white leading-tight">
-                    그로스리얼티
-                  </span>
-                  <span className="font-display text-[9px] tracking-[0.15em] text-[var(--color-dm)] uppercase">
-                    Growth Realty
-                  </span>
-                </div>
+              <Link href="/" className="flex items-center mb-6">
+                <Image
+                  src="/assets/icons/simbol_logo.svg"
+                  alt="그로스리얼티"
+                  width={140}
+                  height={40}
+                  className="h-10 w-auto"
+                />
               </Link>
 
               <div className="space-y-2 text-[13px] text-[var(--color-dm)]">
